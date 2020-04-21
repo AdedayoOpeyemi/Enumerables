@@ -36,7 +36,16 @@ module Enumerable
 
   end
 
-  
+  def my_all?
 
+    check = true
+
+    my_each { |element| check = false if !yield(element)} 
+
+    check
+
+  end
 
 end
+
+
