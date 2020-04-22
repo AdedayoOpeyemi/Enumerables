@@ -54,7 +54,27 @@ module Enumerable
 
     check
   end
+  
+
+  def my_none?
+
+    if block_given?
+
+    check = true
+
+    my_each { |element| check = false if yield(element)} 
+
+    else
+
+    check = true
+
+    my_each { |element| check = true if !element } 
+
+    end
+
+    check
+
+  end
 
 end
-
 
