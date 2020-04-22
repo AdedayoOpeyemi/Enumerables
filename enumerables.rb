@@ -90,9 +90,22 @@ module Enumerable
       count = size
     end
     count
-  
-  
   end
+  
+  def my_map
+    return to_enum(:my_map) unless block_given?
+
+    mapped = []
+
+    if self.is_a? Range
+      self.to_a.my_each { |element| mapped << yield(element)}
+    else
+    my_each { |element| mapped << yield(element)}
+    end
+    mapped
+  end
+
+ 
 
 
 end
