@@ -75,10 +75,21 @@ module Enumerable
       my_each{ |element| check = false if element}
     end
     check
-    
   end
 
-  def  my_count?
+
+  def  my_count( arg = nil)
+
+    count = 0
+
+    if block_given?
+      my_each { |element| count += 1 if yield(element) }
+    elsif arg
+      my_each { |element| count += 1 if element == arg }
+    else
+      count = size
+    end
+    count
   
   
   end
