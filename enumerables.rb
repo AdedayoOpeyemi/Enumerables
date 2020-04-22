@@ -63,27 +63,19 @@ module Enumerable
   end
 
 
-  def my_none?
-
-
-    if block_given?
+  def my_none?(arg = nil)
 
     check = true
 
+    if arg != nil
+      my_each { |i| check = false if arg === i }
+    elsif block_given?
     my_each { |element| check = false if yield(element)} 
-
     else
-
-    check = true
-
-    my_each { |element| check = true if !element } 
-
+      my_each{ |element| check = false if element}
     end
-
-
-
     check
-
+    
   end
 
   def  my_count?
