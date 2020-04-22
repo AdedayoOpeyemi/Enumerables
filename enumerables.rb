@@ -36,14 +36,15 @@ module Enumerable
 
   end
 
-  def my_all?
+  def my_all?(arg = nil)
 
     check = true
-
+    if !args
+      my_each { |i| check = false unless arg === i }
+    else
     my_each { |element| check = false if !yield(element)} 
-
-    check
-
+    end
+    check   
   end
 
   def my_any?
@@ -54,9 +55,10 @@ module Enumerable
 
     check
   end
-  
+
 
   def my_none?
+
 
     if block_given?
 
@@ -72,9 +74,16 @@ module Enumerable
 
     end
 
+
+
     check
 
   end
 
-end
+  def  my_count?
+  
+  
+  end
 
+
+end
