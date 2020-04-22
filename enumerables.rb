@@ -36,6 +36,7 @@ module Enumerable
 
   end
 
+
   def my_all?(arg = nil)
 
     check = true
@@ -47,12 +48,17 @@ module Enumerable
     check   
   end
 
-  def my_any?
 
+  def my_any?( arg = nil)
     check = false
 
+    if arg != nil
+      my_each { |i| check = true if arg === i }
+    elsif block_given?
     my_each { |element| check = true if yield(element)} 
-
+    else
+      my_each{ |element| check = true if element}
+    end
     check
   end
 
