@@ -105,7 +105,36 @@ module Enumerable
     mapped
   end
 
- 
+  def my_inject(*arg)
+
+    self = is_a?(Array) ? self : to_a
+    accumulator = arg[0] if arg[0].is_a? Integer
+
+    if arg.length == 1 && block_given?
+      if self.is_a? Range
+      self.to_a.my_each { |item | accumulator = yield(accumulator, item)  }  
+      else
+        my_each { |item | accumulator = yield(accumulator, item)  } 
+      end
+  
+    elsif arg.length == 2
+      if arg[1].is_a? Integer
+        accumulator = arg[1]
+        sign = arg[0]
+        my_each { |item| accumulator =  accumulator.send(sign, item)} 
+      else
+        accumulator = arg[0]
+        my_each { |item| accumulator =  accumulator.send(sign, item)} 
+      end
+      
+    
+    else
+      sign = arg[0]
+      my_each { |item| accumulator = accumulator ? accumulator.send(sign, item) : item}
+    end
+    accumulator
+
+end
 
 
 end
