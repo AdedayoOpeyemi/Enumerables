@@ -3,13 +3,18 @@ module Enumerable
   def my_each
 
     return to_enum(:my_each) unless block_given?
+    if self.is_a? Range
+      conv = self.to_a
+    else
+      conv = self
+    end
 
     i = 0
-    while i < length
-      yield self[i]
+    while i < conv.length
+      yield conv[i]
       i += 1
     end
-    self
+    conv
   end
 
   def my_each_with_index
