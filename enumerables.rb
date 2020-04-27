@@ -21,9 +21,15 @@ module Enumerable
 
     return to_enum(:my_each_with_index) unless block_given?
 
+    if self.is_a? Range
+      conv = self.to_a
+    else
+      conv = self
+    end
+
     i = 0
-    while i < length
-      yield self[i], i
+    while i < conv.length
+      yield conv[i], i
       i += 1
     end
     self
