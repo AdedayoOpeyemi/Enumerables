@@ -108,16 +108,13 @@ module Enumerable
 
     mapped = []
 
-    if self.is_a? Range
-      self.to_a.my_each { |element| mapped << yield(element)}
-    else
     my_each { |element| mapped << yield(element)}
-    end
+
     mapped
   end
 
   def my_inject(*arg)
-    # accumulator = arg[0] if arg[0].is_a? Integer
+  
     if arg[0].is_a? Integer
       accumulator = arg[0]
       sign = arg[1]
