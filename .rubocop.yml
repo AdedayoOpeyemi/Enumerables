@@ -37,6 +37,10 @@ Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
   Enabled: false
+Style/CyclomaticComplexity:
+  Enabled: false
+Style/PerceivedComplexity:
+  Enabled: false
 
 Layout/HashAlignment:
   EnforcedColonStyle: key

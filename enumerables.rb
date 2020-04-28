@@ -2,11 +2,11 @@ module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
 
-    if is_a? Range
-      conv = to_a
-    else
-      conv = self
-    end
+    conv = if is_a? Range
+             to_a
+           else
+             self
+           end
     i = 0
     while i < conv.length
       yield conv[i]
@@ -18,11 +18,11 @@ module Enumerable
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
-    if is_a? Range
-      conv = to_a
-    else
-      conv = self
-    end
+    conv = if is_a? Range
+             to_a
+           else
+             self
+           end
     i = 0
     while i < conv.length
       yield conv[i], i
@@ -41,18 +41,18 @@ module Enumerable
 
   def my_all?(arg = nil)
     check = true
-    if !args
-      my_each { |i| check = false unless arg == i }
+    if args
+      my_each { |i| check = false unless arg === i } # rubocop:disable Style/CaseEquality
     else
-      my_each { |element| check = false if !yield(element) }
+      my_each { |element| check = false unless yield(element) }
     end
     check
   end
 
   def my_any?(arg = nil)
     check = false
-    if !arg.nil
-      my_each { |i| check = true if arg == i }
+    if arg
+      my_each { |i| check = true if arg === i } # rubocop:disable Style/CaseEquality
     elsif block_given?
       my_each { |element| check = true if yield(element) }
     else
@@ -63,8 +63,8 @@ module Enumerable
 
   def my_none?(arg = nil)
     check = true
-    if !arg.nil
-      my_each { |i| check = false if arg == i }
+    if arg
+      my_each { |i| check = false if arg === i } # rubocop:disable Style/CaseEquality
     elsif block_given?
       my_each { |element| check = false if yield(element) }
     else
