@@ -41,7 +41,7 @@ module Enumerable
 
   def my_all?(arg = nil)
     check = true
-    if args
+    if arg
       my_each { |i| check = false unless arg === i } # rubocop:disable Style/CaseEquality
     else
       my_each { |element| check = false unless yield(element) }
