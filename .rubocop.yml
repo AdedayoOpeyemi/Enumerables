@@ -19,9 +19,9 @@ Metrics/BlockLength:
   Max: 30
 Metrics/ModuleLength:
   Max: 120
-Metric/CyclomaticComplexity:
+Metrics/CyclomaticComplexity:
   Enabled: false
-Metric/PerceivedComplexity:
+Metrics/PerceivedComplexity:
   Enabled: false
 
 
