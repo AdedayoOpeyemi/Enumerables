@@ -19,6 +19,11 @@ Metrics/BlockLength:
   Max: 30
 Metrics/ModuleLength:
   Max: 120
+Metric/CyclomaticComplexity:
+  Enabled: false
+Metric/PerceivedComplexity:
+  Enabled: false
+
 
 
 Style/Documentation:
@@ -38,10 +43,6 @@ Style/HashEachMethods:
 Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
-  Enabled: false
-Style/CyclomaticComplexity:
-  Enabled: false
-Style/PerceivedComplexity:
   Enabled: false
 
 Layout/HashAlignment:
