@@ -27,9 +27,9 @@
 
 👤 **Opeyemi Oyelei**
 
-- Github: [@sebGilR](https://github.com/Adedayoopeyemi)
-- Twitter: [@sebGilR](https://twitter.com/oyelesiopy)
-- Linkedin: [Sebastian Gil Rodriguez](https://www.linkedin.com/in/Opeyemioyelesi)
+- Github: [@Adedayoopeyemi](https://github.com/Adedayoopeyemi)
+- Twitter: [@Oyelesiopy](https://twitter.com/oyelesiopy)
+- Linkedin: [Opeyemi Oyelesi](https://www.linkedin.com/in/Opeyemioyelesi)
 
 ## 🤝 Contributing
 
