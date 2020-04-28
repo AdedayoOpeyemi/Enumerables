@@ -46,7 +46,7 @@ module Enumerable
     elsif block_given?
       my_each { |element| check = false unless yield(element) }
     else
-      my_each { |i| check = false if i = false || nil }
+      my_each { |i| check = false unless i }
     end
     check
   end
