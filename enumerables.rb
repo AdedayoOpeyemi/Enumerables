@@ -43,8 +43,10 @@ module Enumerable
     check = true
     if arg
       my_each { |i| check = false unless arg === i } # rubocop:disable Style/CaseEquality
-    else
+    elsif block_given?
       my_each { |element| check = false unless yield(element) }
+    else
+      my_each { |i| check = false if i != true }
     end
     check
   end
