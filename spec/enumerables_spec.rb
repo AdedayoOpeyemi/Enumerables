@@ -2,6 +2,7 @@ require './enumerables'
 
 describe Enumerable do
   let(:arr_num) { [1, 2, 3, 4, 5] }
+  let(:arr_duplicate) { [1, 4, 3, 4, 3] }
   let(:arr_mixed) { [1, 2, 3, 'apple', 4, 'dog'] }
   let(:arr_string) { %w[ant bear cat] }
   let(:arr_with_nil) { [nil, true, 99] }
@@ -108,5 +109,59 @@ describe Enumerable do
       test_result = arr_non_truthy.my_all?
       expect(test_result).to eql(expected_result)
     end
+  end
+
+  describe '#my_none?' do
+    it 'returns true if none of the elements match given argument' do
+      expected_result = false
+      test_result = arr_num.my_none?(Integer)
+      expect(test_result).to eql(expected_result)
+    end
+
+    it 'returns true if none of the elements match given argument' do
+      expected_result = true
+      test_result = arr_num.my_none?(String)
+      expect(test_result).to eql(expected_result)
+    end
+
+    it 'returns true if none of the elements match given arguement' do
+      expected_result = false
+      test_result = arr_mixed.my_none?(Integer)
+      expect(test_result).to eql(expected_result)
+    end
+
+    it 'returns true if none elements match given conditions' do
+      expected_result = false
+      test_result = arr_string.my_none? { |word| word.length >= 3 }
+      expect(test_result).to eql(expected_result)
+    end
+
+    it 'returns false if none of the element is a truthy value' do
+      expected_result = true
+      test_result = arr_non_truthy.my_none?
+      expect(test_result).to eql(expected_result)
+    end
+  end
+
+  describe 'my_count' do
+    it 'returns number of elements in a given array or range' do
+      expected_result = 5
+      test_result = arr_num.my_count
+      expect(test_result).to eql(expected_result)
+    end
+
+    it 'returns number of elements in a given array or range with specified conditions' do
+      expected_result = 3
+      test_result = arr_string.my_count{|word| word.length >= 3}
+      expect(test_result).to eql(expected_result)
+    end
+
+    it 'returns number of elements in a given array or range with specified conditions' do
+      expected_result = 2
+      test_result = arr_duplicate.my_count(4)
+      expect(test_result).to eql(expected_result)
+    end
+
+
   end
 end
