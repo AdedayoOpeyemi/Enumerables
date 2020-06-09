@@ -180,4 +180,9 @@ describe Enumerable do
     end
   end
 
+  describe 'multiply_els' do
+    it 'returns a multiplication of all elements in the array' do
+      expect(multiply_els(arr_num)).to eql(120)   
+    end
+  end
 end
