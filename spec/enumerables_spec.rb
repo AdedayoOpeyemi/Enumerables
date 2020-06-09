@@ -143,7 +143,7 @@ describe Enumerable do
     end
   end
 
-  describe 'my_count' do
+  describe '#my_count' do
     it 'returns number of elements in a given array or range' do
       expected_result = 5
       test_result = arr_num.my_count
@@ -152,7 +152,7 @@ describe Enumerable do
 
     it 'returns number of elements in a given array or range with specified conditions' do
       expected_result = 3
-      test_result = arr_string.my_count{|word| word.length >= 3}
+      test_result = arr_string.my_count { |word| word.length >= 3 }
       expect(test_result).to eql(expected_result)
     end
 
@@ -163,26 +163,59 @@ describe Enumerable do
     end
   end
 
-  describe 'my_map' do
+  describe '#my_map' do
     it 'returns Enumerator if no block is given' do
       expect([].my_map).to be_a(Enumerator)
     end
 
     it 'returns an array if a block is given' do
-      test_result = arr_string.my_map{|word| word if (word.length >= 3)}
+      test_result = arr_string.my_map { |word| word if word.length >= 3 }
       expect(test_result).to be_an_instance_of(Array)
     end
 
     it 'returns an array with elements that meet specified condition' do
       expected_result = %w[ant bear cat]
-      test_result = arr_string.my_map{|word| word if (word.length >= 3)}
+      test_result = arr_string.my_map { |word| word if word.length >= 3 }
       expect(test_result).to eql(expected_result)
     end
   end
 
-  describe 'multiply_els' do
+  describe '#multiply_els' do
     it 'returns a multiplication of all elements in the array' do
-      expect(multiply_els(arr_num)).to eql(120)   
+      expect(multiply_els(arr_num)).to eql(120)
+    end
+  end
+
+  describe '#my_inject' do
+    it 'returns the result of the given operation argument on the range or array' do
+      expected_result = 15
+      expect(arr_num.my_inject(:+)).to eql(expected_result)
+    end
+
+    it 'returns the result of the given operation argument on the range or array' do
+      expected_result = 15
+      test_result = arr_num.my_inject { |sum, n| sum + n }
+      expect(test_result).to eql(expected_result)
+    end
+
+    it 'returns the result of the given operation argument on the range or array' do
+      expected_result = 120
+      test_result = arr_num.my_inject(1, :*)
+      expect(test_result).to eql(expected_result)
+    end
+
+    it 'returns the result of the given operation argument on the range or array' do
+      expected_result = 120
+      test_result = arr_num.my_inject(1) { |product, n| product * n }
+      expect(test_result).to eql(expected_result)
+    end
+
+    it 'returns the result of the given operation argument on the range or array' do
+      expected_result = 'bear'
+      test_result = arr_string.my_inject do |memo, word|
+        memo.length > word.length ? memo : word
+      end
+      expect(test_result).to eql(expected_result)
     end
   end
 end
