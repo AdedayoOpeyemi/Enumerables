@@ -10,7 +10,7 @@ describe Enumerable do
 
   describe '#my_each' do
     it 'returns to enum if no block is provided' do
-      expect(arr_num.my_each).to be_a(Enumerator)
+      expect([].my_each).to be_a(Enumerator)
     end
 
     it 'returns a new array with the result of the operation within the block' do
@@ -23,7 +23,7 @@ describe Enumerable do
 
   describe '#my_each_with_index' do
     it 'returns to enum if no block is provided' do
-      expect(arr_num.my_each_with_index).to be_a(Enumerator)
+      expect([].my_each_with_index).to be_a(Enumerator)
     end
 
     it 'returns a new array with the result of the operation within the block' do
@@ -161,7 +161,23 @@ describe Enumerable do
       test_result = arr_duplicate.my_count(4)
       expect(test_result).to eql(expected_result)
     end
-
-
   end
+
+  describe 'my_map' do
+    it 'returns Enumerator if no block is given' do
+      expect([].my_map).to be_a(Enumerator)
+    end
+
+    it 'returns an array if a block is given' do
+      test_result = arr_string.my_map{|word| word if (word.length >= 3)}
+      expect(test_result).to be_an_instance_of(Array)
+    end
+
+    it 'returns an array with elements that meet specified condition' do
+      expected_result = %w[ant bear cat]
+      test_result = arr_string.my_map{|word| word if (word.length >= 3)}
+      expect(test_result).to eql(expected_result)
+    end
+  end
+
 end
