@@ -18,6 +18,7 @@
 
 - Ruby
 - Rubocop (Linter)
+- Rspec (Testing)
 
 ## Live Demo
 
